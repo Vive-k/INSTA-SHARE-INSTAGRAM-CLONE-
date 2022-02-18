@@ -70,6 +70,28 @@ class Home extends Component {
     }
   }
 
+  reGetUserStories = () => {
+    const jwtToken = Cookies.get('jwtToken')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    this.getUserStories(jwtToken, options)
+  }
+
+  reGetUserPosts = () => {
+    const jwtToken = Cookies.get('jwtToken')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    this.getUsersPosts(jwtToken, options)
+  }
+
   renderUserStories = () => {
     const {userStories, storiesFetchStatus} = this.state
     const settings = {
@@ -156,7 +178,9 @@ class Home extends Component {
               />
             </div>
             <p>Something went wrong. Please try again</p>
-            <button type="button">Retry</button>
+            <button type="button" onClick={this.reGetUserStories}>
+              Retry
+            </button>
           </div>
         )
       default:
@@ -167,53 +191,47 @@ class Home extends Component {
   renderUsersPosts = () => {
     const {usersPosts, postsFetchStatus} = this.state
     console.log(usersPosts)
-    return (
-      <ul>
-        {usersPosts.map(
-          eachPost => (
-            /* const postDetails = eachPost.post_details
-          console.log(postDetails) */
-            <UsersPosts key={eachPost.post_id} userPost={eachPost} />
-          ),
-          /*  return (
-            <li key={eachPost.post_id}>
-              <div>
-                <img src={eachPost.profile_pic} alt="post author profile" />
-                <p>{eachPost.user_name}</p>
-              </div>
-              <div>
-                <img src={postDetails.image_url} alt="post" />
-              </div>
-              <div>
-                <button type="button">
-                  <FcLike testid="unLikeIcon" />
-                </button>
-                <button type="button">
-                  <BsHeart testid="likeIcon" />
-                </button>
-                <button type="button">
-                  <FaRegComment />
-                </button>
-                <button type="button">
-                  <BiShareAlt />
-                </button>
-              </div>
-              <p>{eachPost.likes_count} likes</p>
-              <p>{postDetails.caption}</p>
-              <ul>
-                {eachPost.comments.map(eachComment => (
-                  <li key={eachComment.user_id}>
-                    <p>{eachComment.user_name}</p>
-                    <p>{eachComment.comment}</p>
-                  </li>
-                ))}
-              </ul>
-              <p>{eachPost.created_at}</p>
-            </li>
-          ) */
-        )}
-      </ul>
-    )
+    switch (postsFetchStatus) {
+      case dataFetchStatusConstants.success:
+        return (
+          <ul>
+            {usersPosts.map(eachPost => (
+              <UsersPosts key={eachPost.post_id} userPost={eachPost} />
+            ))}
+          </ul>
+        )
+      case dataFetchStatusConstants.loading:
+        return (
+          <div
+            className="loader-container"
+            testid="loader"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
+          </div>
+        )
+      case dataFetchStatusConstants.failure:
+        return (
+          <div>
+            <div>
+              <img
+                src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645180684/alert-triangle-failure-view_htbcnn.png"
+                alt="failure-view"
+              />
+            </div>
+            <p>Something went wrong. Please try again</p>
+            <button type="button" onClick={this.reGetUserPosts}>
+              Retry
+            </button>
+          </div>
+        )
+      default:
+        return null
+    }
   }
 
   render() {
