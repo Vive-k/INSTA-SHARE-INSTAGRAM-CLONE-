@@ -1,0 +1,12 @@
+.storis-large-display {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .stories-small-display {
+    display: none;
+  }
+  .storis-large-display {
+    display: block;
+  }
+}

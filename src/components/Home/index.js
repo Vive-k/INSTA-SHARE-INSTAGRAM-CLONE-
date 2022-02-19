@@ -1,12 +1,14 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import Slider from 'react-slick'
-import Loader from 'react-loader-spinner'
 
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import Header from '../Header'
 
+import LoaderComponent from '../LoaderComponent'
+import Stories from '../Stories'
 import UsersPosts from '../UsersPosts'
+import FailureView from '../FailureView'
+
+import './index.css'
 
 const dataFetchStatusConstants = {
   initial: 'INITIAL',
@@ -24,6 +26,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.getUserStories()
+    this.getUsersPosts()
+  }
+
+  getUserStories = async () => {
     const jwtToken = Cookies.get('jwtToken')
     const options = {
       method: 'GET',
@@ -31,11 +38,6 @@ class Home extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    this.getUserStories(jwtToken, options)
-    this.getUsersPosts(jwtToken, options)
-  }
-
-  getUserStories = async (jwtToken, options) => {
     this.setState({storiesFetchStatus: dataFetchStatusConstants.loading})
     const response = await fetch(
       'https://apis.ccbp.in/insta-share/stories',
@@ -53,7 +55,14 @@ class Home extends Component {
     }
   }
 
-  getUsersPosts = async (jwtToken, options) => {
+  getUsersPosts = async () => {
+    const jwtToken = Cookies.get('jwtToken')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
     this.setState({postsFetchStatus: dataFetchStatusConstants.loading})
     const response = await fetch(
       'https://apis.ccbp.in/insta-share/posts',
@@ -70,119 +79,24 @@ class Home extends Component {
     }
   }
 
-  reGetUserStories = () => {
-    const jwtToken = Cookies.get('jwtToken')
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    this.getUserStories(jwtToken, options)
-  }
-
-  reGetUserPosts = () => {
-    const jwtToken = Cookies.get('jwtToken')
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    this.getUsersPosts(jwtToken, options)
-  }
-
   renderUserStories = () => {
     const {userStories, storiesFetchStatus} = this.state
-    const settings = {
-      dots: true,
-
-      slidesToScroll: 1,
-    }
     switch (storiesFetchStatus) {
       case dataFetchStatusConstants.loading:
-        return (
-          <div
-            className="loader-container"
-            testid="loader"
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
-          </div>
-        )
+        return <LoaderComponent />
       case dataFetchStatusConstants.success:
         return (
           <div>
-            <div
-              style={{
-                backgroundColor: 'blue',
-                display: 'flex',
-                flexDirection: 'Column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              {/* for small screen */}
-              <Slider
-                {...settings}
-                slidesToShow={4}
-                style={{
-                  width: '92%',
-                }}
-              >
-                {userStories.map(each => (
-                  <div key={each.user_id}>
-                    <div>
-                      <div>
-                        <img src={each.story_url} alt="user story" />
-                        <p>{each.user_name}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Slider>
-
-              {/* for large screens */}
-              <Slider
-                {...settings}
-                slidesToShow={7}
-                style={{
-                  width: '92%',
-                }}
-              >
-                {userStories.map(each => (
-                  <div key={each.user_id}>
-                    <div>
-                      <div>
-                        <img src={each.story_url} alt="user story" />
-                        <p>{each.user_name}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Slider>
+            <div className="stories-small-display">
+              <Stories noOfSlidesToShow={4} userStories={userStories} />
+            </div>
+            <div className="storis-large-display">
+              <Stories noOfSlidesToShow={7} userStories={userStories} />
             </div>
           </div>
         )
       case dataFetchStatusConstants.failure:
-        return (
-          <div>
-            <div>
-              <img
-                src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645180684/alert-triangle-failure-view_htbcnn.png"
-                alt="failure-view"
-              />
-            </div>
-            <p>Something went wrong. Please try again</p>
-            <button type="button" onClick={this.reGetUserStories}>
-              Retry
-            </button>
-          </div>
-        )
+        return <FailureView retryFunction={this.getUserStories} />
       default:
         return null
     }
@@ -201,34 +115,9 @@ class Home extends Component {
           </ul>
         )
       case dataFetchStatusConstants.loading:
-        return (
-          <div
-            className="loader-container"
-            testid="loader"
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
-          </div>
-        )
+        return <LoaderComponent />
       case dataFetchStatusConstants.failure:
-        return (
-          <div>
-            <div>
-              <img
-                src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645180684/alert-triangle-failure-view_htbcnn.png"
-                alt="failure-view"
-              />
-            </div>
-            <p>Something went wrong. Please try again</p>
-            <button type="button" onClick={this.reGetUserPosts}>
-              Retry
-            </button>
-          </div>
-        )
+        return <FailureView retryFunction={this.getUsersPosts} />
       default:
         return null
     }
@@ -237,7 +126,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Header />
         {this.renderUserStories()}
+        <hr />
         {this.renderUsersPosts()}
       </div>
     )
