@@ -3,9 +3,7 @@ import Slider from 'react-slick'
 import './index.css'
 
 const Stories = props => {
-  console.log(props)
   const {noOfSlidesToShow, userStories} = props
-  console.log(noOfSlidesToShow, userStories)
   const settings = {
     dots: false,
     infinite: false,
@@ -28,7 +26,7 @@ const Stories = props => {
         }}
       >
         {userStories.map(each => (
-          <div key={each.user_id} style={{backgroundColor: 'orange'}}>
+          <div key={each.user_id}>
             <div>
               <div>
                 <img src={each.story_url} alt="user story" />

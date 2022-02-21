@@ -9,7 +9,6 @@ import UsersPosts from '../UsersPosts'
 import FailureView from '../FailureView'
 import SearchComponent from '../SearchComponent'
 import SearchComponentContext from '../../Context/SearchComponentContext'
-/* import SearchComponentSmall from '../SearchComponentSmall' */
 
 import './index.css'
 
@@ -107,7 +106,6 @@ class Home extends Component {
 
   renderUsersPosts = () => {
     const {usersPosts, postsFetchStatus} = this.state
-    console.log(usersPosts)
     switch (postsFetchStatus) {
       case dataFetchStatusConstants.success:
         return (

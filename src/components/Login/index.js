@@ -21,16 +21,13 @@ class Login extends Component {
     const userDetails = {username: usernameInput, password: passwordInput}
     const options = {method: 'POST', body: JSON.stringify(userDetails)}
     const response = await fetch('https://apis.ccbp.in/login', options)
-    console.log(response)
     const data = await response.json()
     if (response.ok) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 1})
-      console.log(this.props)
       const {history} = this.props
       history.replace('/')
     }
     if (!response.ok) {
-      console.log(data)
       this.setState({errorMessageOnSubmission: data.error_msg})
     }
   }
@@ -38,7 +35,7 @@ class Login extends Component {
   render() {
     const {errorMessageOnSubmission} = this.state
     if (Cookies.get('jwt_token') !== undefined) {
-      /* if jwtToken exists */ return <Redirect to="/" />
+      return <Redirect to="/" />
     }
     return (
       <div className="login-page-container">

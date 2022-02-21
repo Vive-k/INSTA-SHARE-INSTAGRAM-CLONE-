@@ -39,7 +39,6 @@ class App extends Component {
     )
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
       this.setState({
         searchDataFetchStatus: dataFetchStatusConstants.success,
         usersPosts: data.posts,
@@ -76,8 +75,6 @@ class App extends Component {
     this.setState({
       searchInputValue: eventTargetValueFromHeaderInputField,
     })
-    console.log('??????????????')
-    console.log(eventTargetValueFromHeaderInputField)
   }
 
   resetSearchInput = () => {

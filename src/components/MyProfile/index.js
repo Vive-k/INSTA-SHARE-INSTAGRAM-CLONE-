@@ -39,10 +39,8 @@ class MyProfile extends Component {
         method: 'GET',
       },
     )
-    console.log(response)
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
       const userProfileData = data.profile
 
       this.setState({

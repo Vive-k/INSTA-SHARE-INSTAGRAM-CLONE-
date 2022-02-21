@@ -38,7 +38,7 @@ class UsersPosts extends Component {
 
   unlikeCLicked = async () => {
     const {userPost} = this.props
-    const jwtToken = Cookies.get('jwtToken')
+    const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'POST',
       headers: {Authorization: `Bearer ${jwtToken}`},

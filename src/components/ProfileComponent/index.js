@@ -4,16 +4,13 @@ import {withRouter} from 'react-router-dom'
 
 const ProfileComponent = props => {
   const {userProfileData} = props
-  console.log('....,,,,..845682975359')
-  console.log(props)
+
   const {match} = props
   const altValueProfilePic =
     match.path === '/my-profile' ? 'my profile' : 'user profile'
   const altValueStory = match.path === '/my-profile' ? 'my story' : 'user story'
   const altValuePost = match.path === '/my-profile' ? 'my post' : 'user post'
 
-  console.log('....,,,,..845682975359')
-  console.log(userProfileData)
   return (
     <div>
       <h1>{userProfileData.user_name}</h1>
@@ -43,8 +40,9 @@ const ProfileComponent = props => {
           <p>{userProfileData.user_id}</p>
           <p>{userProfileData.user_bio}</p>
         </div>
-        {/* <p>{userProfileData.user_id}</p> small large device adjustment 
-      <p>{userProfileData.user_bio}</p> */}
+
+        {/*    <p>{userProfileData.user_id}</p>
+          <p>{userProfileData.user_bio}</p>  */}
       </div>
 
       <ul>

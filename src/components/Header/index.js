@@ -1,4 +1,3 @@
-import {Component} from 'react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FaSearch} from 'react-icons/fa'
 import {Link, withRouter} from 'react-router-dom'
@@ -13,7 +12,6 @@ const Header = props => (
     <SearchComponentContext.Consumer>
       {value => {
         const {
-          showSearchComponent,
           changeStatusOfSearchComponent,
           updateSearchInput,
           searchInputValue,
