@@ -91,7 +91,6 @@ class UserProfile extends Component {
         <SearchComponentContext.Consumer>
           {value => {
             const {showSearchComponent} = value
-
             return (
               <>
                 {showSearchComponent ? (

@@ -5,6 +5,7 @@ import {BsHeart} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
 import Cookies from 'js-cookie'
+import SearchComponentContext from '../../Context/SearchComponentContext'
 
 class UsersPosts extends Component {
   constructor(props) {
@@ -63,50 +64,69 @@ class UsersPosts extends Component {
     const {postLikedCounts, postLikedStatus} = this.state
 
     return (
-      <li>
-        <div>
-          <img src={userPost.profile_pic} alt="post author profile" />
-          <Link to={`/users/${userPost.user_id}`}>
-            <p>{userPost.user_name}</p>
-          </Link>
-        </div>
-        <div>
-          <img src={postDetails.image_url} alt="post" />
-        </div>
-        <div>
-          {!postLikedStatus ? (
-            <button type="button" onClick={this.likeCLicked} testid="likeIcon">
-              <FcLike />
-            </button>
-          ) : (
-            <button
-              onClick={this.unlikeCLicked}
-              type="button"
-              testid="unLikeIcon"
-            >
-              <BsHeart />
-            </button>
-          )}
-          <button type="button">
-            <FaRegComment />
-          </button>
-          <button type="button">
-            <BiShareAlt />
-          </button>
-        </div>
-        <p>{postLikedCounts} likes</p>
-        <p>{postDetails.caption}</p>
-        <ul>
-          {userPost.comments.map(eachComment => (
-            <li key={eachComment.user_id}>
-              <p>
-                <span>{eachComment.user_name}</span> {eachComment.comment}
-              </p>
+      <SearchComponentContext.Consumer>
+        {value => {
+          const {searchComponentShowStatusChange} = value
+
+          const routingToUserProfile = () => {
+            searchComponentShowStatusChange()
+          }
+
+          return (
+            <li>
+              <div>
+                <img src={userPost.profile_pic} alt="post author profile" />
+                <Link
+                  to={`/users/${userPost.user_id}`}
+                  onClick={routingToUserProfile}
+                >
+                  <p>{userPost.user_name}</p>
+                </Link>
+              </div>
+              <div>
+                <img src={postDetails.image_url} alt="post" />
+              </div>
+              <div>
+                {!postLikedStatus ? (
+                  <button
+                    type="button"
+                    onClick={this.likeCLicked}
+                    testid="likeIcon"
+                  >
+                    <FcLike />
+                  </button>
+                ) : (
+                  <button
+                    onClick={this.unlikeCLicked}
+                    type="button"
+                    testid="unLikeIcon"
+                  >
+                    <BsHeart />
+                  </button>
+                )}
+                <button type="button">
+                  <FaRegComment />
+                </button>
+                <button type="button">
+                  <BiShareAlt />
+                </button>
+              </div>
+              <p>{postLikedCounts} likes</p>
+              <p>{postDetails.caption}</p>
+              <ul>
+                {userPost.comments.map(eachComment => (
+                  <li key={eachComment.user_id}>
+                    <p>
+                      <span>{eachComment.user_name}</span> {eachComment.comment}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p>{userPost.created_at}</p>
             </li>
-          ))}
-        </ul>
-        <p>{userPost.created_at}</p>
-      </li>
+          )
+        }}
+      </SearchComponentContext.Consumer>
     )
   }
 }
