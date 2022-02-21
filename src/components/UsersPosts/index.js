@@ -15,7 +15,7 @@ class UsersPosts extends Component {
 
   likeCLicked = async () => {
     const {userPost} = this.props
-    const jwtToken = Cookies.get('jwtToken')
+    const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'POST',
       headers: {Authorization: `Bearer ${jwtToken}`},
@@ -75,12 +75,16 @@ class UsersPosts extends Component {
         </div>
         <div>
           {!postLikedStatus ? (
-            <button type="button" onClick={this.likeCLicked}>
-              <FcLike testid="unLikeIcon" />
+            <button type="button" onClick={this.likeCLicked} testid="likeIcon">
+              <FcLike />
             </button>
           ) : (
-            <button onClick={this.unlikeCLicked} type="button">
-              <BsHeart testid="likeIcon" />
+            <button
+              onClick={this.unlikeCLicked}
+              type="button"
+              testid="unLikeIcon"
+            >
+              <BsHeart />
             </button>
           )}
           <button type="button">
@@ -95,8 +99,9 @@ class UsersPosts extends Component {
         <ul>
           {userPost.comments.map(eachComment => (
             <li key={eachComment.user_id}>
-              <p>{eachComment.user_name}</p>
-              <p>{eachComment.comment}</p>
+              <p>
+                <span>{eachComment.user_name}</span> {eachComment.comment}
+              </p>
             </li>
           ))}
         </ul>

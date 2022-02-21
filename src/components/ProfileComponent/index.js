@@ -1,8 +1,18 @@
 import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
+import {withRouter} from 'react-router-dom'
 
 const ProfileComponent = props => {
   const {userProfileData} = props
+  console.log('....,,,,..845682975359')
+  console.log(props)
+  const {match} = props
+  const altValueProfilePic =
+    match.path === '/my-profile' ? 'my profile' : 'user profile'
+  const altValueStory = match.path === '/my-profile' ? 'my story' : 'user story'
+  const altValuePost = match.path === '/my-profile' ? 'my post' : 'user post'
+
+  console.log('....,,,,..845682975359')
   console.log(userProfileData)
   return (
     <div>
@@ -10,9 +20,8 @@ const ProfileComponent = props => {
 
       <div>
         <div>
-          <img src={userProfileData.profile_pic} alt="user profile" />
+          <img src={userProfileData.profile_pic} alt={altValueProfilePic} />
         </div>
-
         <div>
           <div>
             <div>
@@ -34,14 +43,14 @@ const ProfileComponent = props => {
           <p>{userProfileData.user_id}</p>
           <p>{userProfileData.user_bio}</p>
         </div>
+        {/* <p>{userProfileData.user_id}</p> small large device adjustment 
+      <p>{userProfileData.user_bio}</p> */}
       </div>
 
-      <p>{userProfileData.user_id}</p>
-      <p>{userProfileData.user_bio}</p>
       <ul>
         {userProfileData.stories.map(each => (
           <li key={each.id}>
-            <img src={each.image} alt="user story" />
+            <img src={each.image} alt={altValueStory} />
           </li>
         ))}
       </ul>
@@ -60,7 +69,7 @@ const ProfileComponent = props => {
         <ul>
           {userProfileData.posts.map(each => (
             <li key={each.id}>
-              <img src={each.image} alt="user post" />
+              <img src={each.image} alt={altValuePost} />
             </li>
           ))}
         </ul>
@@ -69,4 +78,4 @@ const ProfileComponent = props => {
   )
 }
 
-export default ProfileComponent
+export default withRouter(ProfileComponent)

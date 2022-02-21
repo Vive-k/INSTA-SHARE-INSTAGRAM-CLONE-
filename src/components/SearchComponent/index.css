@@ -1,0 +1,12 @@
+.large-device-component {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .small-device-component {
+    display: none;
+  }
+  .large-device-component {
+    display: block;
+  }
+}

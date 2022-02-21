@@ -1,12 +1,23 @@
-.storis-large-display {
+.stories-large-display {
+  display: none;
+}
+
+.header-large-device {
   display: none;
 }
 
 @media screen and (min-width: 768px) {
+  .header-large-device {
+    display: block;
+  }
+
+  .header-small-device {
+    display: none;
+  }
   .stories-small-display {
     display: none;
   }
-  .storis-large-display {
+  .stories-large-display {
     display: block;
   }
 }

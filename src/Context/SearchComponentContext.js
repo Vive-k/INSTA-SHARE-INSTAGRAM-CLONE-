@@ -1,10 +1,18 @@
 import React from 'react'
 
 const SearchComponentContext = React.createContext({
-  showSearchComponent: false,
   searchInputValue: '',
+  showSearchComponent: false,
+  searchDataFetchStatus: 'INITIAL',
+  usersPosts: [],
   changeStatusOfSearchComponent: () => {},
-  takingSearchInput: () => {},
+  updateSearchInput: () => {},
+  searchComponentShowStatusChange: () => {},
+  resetSearchInput: () => {},
+  showNavItemsUnderHamburger: false,
+  showOptionsSmall: () => {},
+  closeOptionsSmall: () => {},
+  searchComponentOpenSmall: () => {},
 })
 
 export default SearchComponentContext

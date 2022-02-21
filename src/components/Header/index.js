@@ -4,131 +4,169 @@ import {FaSearch} from 'react-icons/fa'
 import {Link, withRouter} from 'react-router-dom'
 import {IoCloseCircle} from 'react-icons/io5'
 import Cookies from 'js-cookie'
+import SearchComponentContext from '../../Context/SearchComponentContext'
 
 import './index.css'
 
+/* const Header = props =>  */
+
 class Header extends Component {
-  state = {showNavItemsUnderHamburger: false}
+  state = {showHamOptions: false}
 
-  hamburgerClicked = () => {
-    this.setState({showNavItemsUnderHamburger: true})
-  }
-
-  searchClicked = () => {
-    this.setState({showNavItemsUnderHamburger: false})
-  }
-
-  optionsClose = () => {
-    this.setState({showNavItemsUnderHamburger: false})
-  }
-
-  logout = () => {
-    const {history} = this.props
-
-    Cookies.remove('jwtToken')
-    history.replace('/')
-  }
-
-  testingFunction = () => {
-    console.log(
-      'test test test test test test test test test test test test test test test test test test test test test test test test ',
-    )
-  }
-
-  routeToProfilePage = () => {
-    console.log(
-      'xvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvvxvxvxvxvxvxxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxvxv',
-    )
-  }
-
-  clickedHome = () => {
-    console.log(
-      'XXXXXXXXXXXXhome home home home home home home home home home home home home home home home home home home home homeXXXXXXXXX',
-    )
+  toShowHamOptions = () => {
+    this.setState({showHamOptions: true})
   }
 
   render() {
-    const {showNavItemsUnderHamburger} = this.state
-
+    const {showHamOptions} = this.state
     return (
-      <nav>
-        <Link to="/">
-          <div>
-            <img
-              src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645148617/Standard_Collection_8-website_logo_tid9hk.png"
-              alt="website logo"
-            />
-            <p>Insta Share</p>
-          </div>
-        </Link>
+      <>
+        <SearchComponentContext.Consumer>
+          {value => {
+            const {
+              showSearchComponent,
+              changeStatusOfSearchComponent,
+              updateSearchInput,
+              searchInputValue,
+              searchComponentShowStatusChange,
+              resetSearchInput,
+              showNavItemsUnderHamburger,
+              showOptionsSmall,
+              closeOptionsSmall,
+              searchComponentOpenSmall,
+            } = value
 
-        <ul className="nav-items-large-display">
-          <li>
-            <input type="search" placeholder="Search Caption" />
-            <button type="button" testid="searchIcon">
-              <FaSearch />
-            </button>
-          </li>
-          <li>
-            {/*  <button type="button" > */}
-            <Link to="/" onClick={this.testingFunction}>
-              <p>Home</p>
-            </Link>
-            {/*   </button> */}
-          </li>
-          <li>
-            {/*  <button type="button" > */}
-            <Link to="/my-profile" onClick={this.testingFunction}>
-              <p>Profile</p>
-            </Link>
-            {/*   </button> */}
-          </li>
-          <li>
-            <button type="button" onClick={this.logout}>
-              Logout
-            </button>
-          </li>
-        </ul>
+            const searchComponentStatusChange = () => {
+              changeStatusOfSearchComponent()
+            }
 
-        <div className="nav-items-small-display">
-          <button type="button" onClick={this.hamburgerClicked}>
-            <GiHamburgerMenu />
-          </button>
-          {showNavItemsUnderHamburger && (
-            <ul>
-              <li>
-                <button type="button" onClick={this.searchClicked}>
-                  Search
-                </button>
-              </li>
-              <li>
-                {/*  <button type="button" > */}
-                <Link to="/" onClick={this.testingFunction}>
-                  <p>Home</p>
+            const openSearchComponentSmall = () => {
+              searchComponentOpenSmall()
+            }
+
+            const intakeSearchInputText = event => {
+              updateSearchInput(event.target.value)
+            }
+
+            const routingToHomeOrProfile = () => {
+              searchComponentShowStatusChange()
+            }
+
+            const hamburgerClicked = () => {
+              showOptionsSmall()
+            }
+
+            const optionsClose = () => {
+              closeOptionsSmall()
+            }
+
+            const logout = () => {
+              const {history} = this.props
+              resetSearchInput()
+              searchComponentShowStatusChange()
+              Cookies.remove('jwt_token')
+              history.replace('/login')
+            }
+
+            return (
+              <nav>
+                <Link to="/" onClick={routingToHomeOrProfile}>
+                  <div>
+                    <img
+                      src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645148617/Standard_Collection_8-website_logo_tid9hk.png"
+                      alt="website logo"
+                    />
+                    <h1>Insta Share</h1>
+                  </div>
                 </Link>
-                {/*   </button> */}
-              </li>
-              <li>
-                {/*  <button type="button" > */}
-                <Link to="/my-profile" onClick={this.testingFunction}>
-                  <p>Profile</p>
-                </Link>
-                {/*   </button> */}
-              </li>
-              <li>
-                <button type="button" onClick={this.logout}>
-                  Logout
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={this.optionsClose}>
-                  <IoCloseCircle />
-                </button>
-              </li>
-            </ul>
-          )}
-        </div>
-      </nav>
+
+                <ul className="nav-items-large-display">
+                  <li>
+                    <input
+                      type="search"
+                      placeholder="Search Caption"
+                      onChange={intakeSearchInputText}
+                      value={searchInputValue}
+                    />
+                    <button
+                      type="button"
+                      testid="searchIcon"
+                      onClick={searchComponentStatusChange}
+                    >
+                      <FaSearch />
+                    </button>
+                  </li>
+                  <li>
+                    {/*  <button type="button" > */}
+                    <Link to="/" onClick={routingToHomeOrProfile}>
+                      <p>Home</p>
+                    </Link>
+                    {/*   </button> */}
+                  </li>
+                  <li>
+                    {/*  <button type="button" > */}
+                    <Link to="/my-profile" onClick={routingToHomeOrProfile}>
+                      <p>Profile</p>
+                    </Link>
+                    {/*   </button> */}
+                  </li>
+                  <li>
+                    <button type="button" onClick={logout}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+                <div className="nav-items-small-display">
+                  <button
+                    type="button"
+                    onClick={hamburgerClicked /* this.toShowHamOptions */}
+                  >
+                    <GiHamburgerMenu />
+                  </button>
+                  {showNavItemsUnderHamburger /* showHamOptions */ && (
+                    <ul>
+                      <li>
+                        {/*  <button type="button" > */}
+
+                        <Link to="/" onClick={routingToHomeOrProfile}>
+                          <p>Home</p>
+                        </Link>
+                        {/*   </button> */}
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          onClick={openSearchComponentSmall}
+                        >
+                          Search
+                        </button>
+                      </li>
+                      <li>
+                        {/*  <button type="button" > */}
+
+                        <Link to="/my-profile" onClick={routingToHomeOrProfile}>
+                          <p>Profile</p>
+                        </Link>
+                        {/*   </button> */}
+                      </li>
+                      <li>
+                        <button type="button" onClick={logout}>
+                          Logout
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" onClick={optionsClose}>
+                          <IoCloseCircle />
+                        </button>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </nav>
+            )
+          }}
+        </SearchComponentContext.Consumer>
+      </>
     )
   }
 }

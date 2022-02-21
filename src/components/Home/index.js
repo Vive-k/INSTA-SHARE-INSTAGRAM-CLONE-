@@ -7,6 +7,9 @@ import LoaderComponent from '../LoaderComponent'
 import Stories from '../Stories'
 import UsersPosts from '../UsersPosts'
 import FailureView from '../FailureView'
+import SearchComponent from '../SearchComponent'
+import SearchComponentContext from '../../Context/SearchComponentContext'
+/* import SearchComponentSmall from '../SearchComponentSmall' */
 
 import './index.css'
 
@@ -31,7 +34,7 @@ class Home extends Component {
   }
 
   getUserStories = async () => {
-    const jwtToken = Cookies.get('jwtToken')
+    const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
       headers: {
@@ -56,7 +59,7 @@ class Home extends Component {
   }
 
   getUsersPosts = async () => {
-    const jwtToken = Cookies.get('jwtToken')
+    const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
       headers: {
@@ -90,7 +93,7 @@ class Home extends Component {
             <div className="stories-small-display">
               <Stories noOfSlidesToShow={4} userStories={userStories} />
             </div>
-            <div className="storis-large-display">
+            <div className="stories-large-display">
               <Stories noOfSlidesToShow={7} userStories={userStories} />
             </div>
           </div>
@@ -126,10 +129,31 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Header />
-        {this.renderUserStories()}
-        <hr />
-        {this.renderUsersPosts()}
+        <Header className="for-header-test" />
+
+        <SearchComponentContext.Consumer>
+          {value => {
+            const {showSearchComponent} = value
+
+            return (
+              <>
+                {showSearchComponent ? (
+                  <>
+                    <div>
+                      <SearchComponent />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {this.renderUserStories()}
+                    <hr />
+                    {this.renderUsersPosts()}
+                  </>
+                )}
+              </>
+            )
+          }}
+        </SearchComponentContext.Consumer>
       </div>
     )
   }

@@ -3,8 +3,11 @@ import Cookies from 'js-cookie'
 
 import Header from '../Header'
 
+import SearchComponent from '../SearchComponent'
+import SearchComponentContext from '../../Context/SearchComponentContext'
+
 import LoaderComponent from '../LoaderComponent'
-import FailureView from '../FailureView'
+import SomethingWentWrong from '../SomethingWentWrong'
 
 import ProfileComponent from '../ProfileComponent'
 
@@ -36,7 +39,7 @@ class UserProfile extends Component {
     const response = await fetch(
       `https://apis.ccbp.in/insta-share/users/${params.id}`,
       {
-        headers: {Authorization: `Bearer ${Cookies.get('jwtToken')}`},
+        headers: {Authorization: `Bearer ${Cookies.get('jwt_token')}`},
         method: 'GET',
       },
     )
@@ -70,7 +73,11 @@ class UserProfile extends Component {
           </>
         )
       case dataFetchStatusConstants.failure:
-        return <FailureView retryFunction={this.getUserProfileData} />
+        return (
+          <div>
+            <SomethingWentWrong retryFunction={this.getUserProfileData} />
+          </div>
+        )
       default:
         return null
     }
@@ -79,9 +86,27 @@ class UserProfile extends Component {
   render() {
     return (
       <div>
-        {' '}
         <Header />
-        {this.renderUserProfile()}
+
+        <SearchComponentContext.Consumer>
+          {value => {
+            const {showSearchComponent} = value
+
+            return (
+              <>
+                {showSearchComponent ? (
+                  <>
+                    <div>
+                      <SearchComponent />
+                    </div>
+                  </>
+                ) : (
+                  <>{this.renderUserProfile()}</>
+                )}
+              </>
+            )
+          }}
+        </SearchComponentContext.Consumer>
       </div>
     )
   }

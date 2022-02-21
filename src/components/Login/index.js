@@ -24,7 +24,7 @@ class Login extends Component {
     console.log(response)
     const data = await response.json()
     if (response.ok) {
-      Cookies.set('jwtToken', data.jwt_token, {expires: 1})
+      Cookies.set('jwt_token', data.jwt_token, {expires: 1})
       console.log(this.props)
       const {history} = this.props
       history.replace('/')
@@ -37,7 +37,7 @@ class Login extends Component {
 
   render() {
     const {errorMessageOnSubmission} = this.state
-    if (Cookies.get('jwtToken') !== undefined) {
+    if (Cookies.get('jwt_token') !== undefined) {
       /* if jwtToken exists */ return <Redirect to="/" />
     }
     return (
@@ -59,7 +59,7 @@ class Login extends Component {
                 alt="website logo"
               />
             </div>
-            <p>Insta Share</p>
+            <h1>Insta Share</h1>
             <label htmlFor="username">USERNAME</label>
             <div>
               <input
