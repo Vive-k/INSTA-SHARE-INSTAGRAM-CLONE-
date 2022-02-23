@@ -1,12 +1,171 @@
 .large-device-component {
   display: none;
 }
+.initial-search-component {
+  height: 80vh;
+
+  background-color: #fafafa;
+  margin-top: 0;
+}
+
+.small-device-search-input-component {
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  padding-left: 28px;
+}
+
+.search-input-field-search-component {
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  height: 25px;
+  outline: none;
+  color: #262626;
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-button-search-component {
+  height: 25px;
+  border: 1px solid #dbdbdb;
+  background-color: #dbdbdb;
+  color: #989898;
+  cursor: pointer;
+}
+
+.initial-search-components-small-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loading-search-component {
+  height: 80vh;
+  background-color: #fafafa;
+}
+.initial-search-component-image {
+  width: 150px;
+}
+
+.initial-search-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #989898;
+}
+
+.loader-component-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-component-success {
+  background-color: #fafafa;
+}
+
+.search-component-with-success-results {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-search-results {
+  display: none;
+}
+
+.user-posts-container {
+  padding-left: 0;
+  list-style-type: none;
+  width: 100%;
+}
+
+.search-component-failure {
+  height: 80vh;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-posts-on-search-container {
+  width: 100%;
+}
+
+.no-posts-on-search-image {
+  width: 80%;
+}
+
+.try-another-search-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #989898;
+}
+
+.search-not-found {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  font-weight: bolder;
+}
 
 @media screen and (min-width: 768px) {
-  .small-device-component {
+  .small-device-search-input-component {
     display: none;
   }
+
   .large-device-component {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .initial-search-components-small-container {
+    display: none;
+  }
+
+  .text-search-results {
     display: block;
+    align-self: flex-start;
+  }
+  .search-component-with-success-results {
+    padding: 50px;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  .user-posts-container {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 16px rgba(123, 135, 148, 0.16);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-posts-on-search-image {
+    width: 30%;
+  }
+
+  .try-another-search-text {
+    font-size: 30px;
+  }
+
+  .search-not-found {
+    font-size: 48px;
+    font-weight: bolder;
   }
 }

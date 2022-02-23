@@ -85,10 +85,14 @@ class Home extends Component {
     const {userStories, storiesFetchStatus} = this.state
     switch (storiesFetchStatus) {
       case dataFetchStatusConstants.loading:
-        return <LoaderComponent />
+        return (
+          <div className="stories-loader-component-container">
+            <LoaderComponent />
+          </div>
+        )
       case dataFetchStatusConstants.success:
         return (
-          <div>
+          <div className="stories-container">
             <div className="stories-small-display">
               <Stories noOfSlidesToShow={4} userStories={userStories} />
             </div>
@@ -98,7 +102,11 @@ class Home extends Component {
           </div>
         )
       case dataFetchStatusConstants.failure:
-        return <FailureView retryFunction={this.getUserStories} />
+        return (
+          <div className="stories-failure-container ">
+            <FailureView retryFunction={this.getUserStories} />
+          </div>
+        )
       default:
         return null
     }
@@ -109,16 +117,26 @@ class Home extends Component {
     switch (postsFetchStatus) {
       case dataFetchStatusConstants.success:
         return (
-          <ul>
-            {usersPosts.map(eachPost => (
-              <UsersPosts key={eachPost.post_id} userPost={eachPost} />
-            ))}
-          </ul>
+          <div className="search-component-with-success-results">
+            <ul className="user-posts-container">
+              {usersPosts.map(eachPost => (
+                <UsersPosts key={eachPost.post_id} userPost={eachPost} />
+              ))}
+            </ul>
+          </div>
         )
       case dataFetchStatusConstants.loading:
-        return <LoaderComponent />
+        return (
+          <div className="posts-loader-component-container">
+            <LoaderComponent />
+          </div>
+        )
       case dataFetchStatusConstants.failure:
-        return <FailureView retryFunction={this.getUsersPosts} />
+        return (
+          <div className="posts-loader-component-container">
+            <FailureView retryFunction={this.getUsersPosts} />
+          </div>
+        )
       default:
         return null
     }
@@ -137,14 +155,11 @@ class Home extends Component {
               <>
                 {showSearchComponent ? (
                   <>
-                    <div>
-                      <SearchComponent />
-                    </div>
+                    <SearchComponent />
                   </>
                 ) : (
                   <>
                     {this.renderUserStories()}
-                    <hr />
                     {this.renderUsersPosts()}
                   </>
                 )}
@@ -158,3 +173,5 @@ class Home extends Component {
 }
 
 export default Home
+
+// ********** */

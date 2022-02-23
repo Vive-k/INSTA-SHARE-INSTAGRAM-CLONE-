@@ -6,6 +6,7 @@ import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
 import Cookies from 'js-cookie'
 import SearchComponentContext from '../../Context/SearchComponentContext'
+import './index.css'
 
 class UsersPosts extends Component {
   constructor(props) {
@@ -73,22 +74,34 @@ class UsersPosts extends Component {
           }
 
           return (
-            <li>
-              <div>
-                <img src={userPost.profile_pic} alt="post author profile" />
+            <li className="each-user-post-container">
+              <div className="user-post-profile-container">
+                <div className="user-post-profile-image-container">
+                  <img
+                    src={userPost.profile_pic}
+                    alt="post author profile"
+                    className="user-post-profile-image"
+                  />
+                </div>
                 <Link
+                  className="user-name-link-container"
                   to={`/users/${userPost.user_id}`}
                   onClick={routingToUserProfile}
                 >
                   <p>{userPost.user_name}</p>
                 </Link>
               </div>
-              <div>
-                <img src={postDetails.image_url} alt="post" />
+              <div className="user-post-image-container">
+                <img
+                  className="user-post-image"
+                  src={postDetails.image_url}
+                  alt="post"
+                />
               </div>
-              <div>
+              <div className="action-buttons-container">
                 {!postLikedStatus ? (
                   <button
+                    className="like-dis-comment-share-button"
                     type="button"
                     onClick={this.likeCLicked}
                     testid="likeIcon"
@@ -97,6 +110,7 @@ class UsersPosts extends Component {
                   </button>
                 ) : (
                   <button
+                    className="like-dis-comment-share-button"
                     onClick={this.unlikeCLicked}
                     type="button"
                     testid="unLikeIcon"
@@ -104,25 +118,28 @@ class UsersPosts extends Component {
                     <BsHeart />
                   </button>
                 )}
-                <button type="button">
+                <button className="like-dis-comment-share-button" type="button">
                   <FaRegComment />
                 </button>
-                <button type="button">
+                <button className="like-dis-comment-share-button" type="button">
                   <BiShareAlt />
                 </button>
               </div>
-              <p>{postLikedCounts} likes</p>
-              <p>{postDetails.caption}</p>
-              <ul>
+              <p className="likes-text">{postLikedCounts} likes</p>
+              <p className="caption-comments-text">{postDetails.caption}</p>
+              <ul className="comments-container">
                 {userPost.comments.map(eachComment => (
                   <li key={eachComment.user_id}>
-                    <p>
-                      <span>{eachComment.user_name}</span> {eachComment.comment}
+                    <p className="caption-comments-text">
+                      <span className="commented-user-name">
+                        {eachComment.user_name}
+                      </span>
+                      {eachComment.comment}
                     </p>
                   </li>
                 ))}
               </ul>
-              <p>{userPost.created_at}</p>
+              <p className="post-created-moment">{userPost.created_at}</p>
             </li>
           )
         }}
@@ -131,3 +148,5 @@ class UsersPosts extends Component {
   }
 }
 export default UsersPosts
+
+//  *********** */

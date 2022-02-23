@@ -11,6 +11,8 @@ import SomethingWentWrong from '../SomethingWentWrong'
 
 import ProfileComponent from '../ProfileComponent'
 
+import './index.css'
+
 const dataFetchStatusConstants = {
   initial: 'INITIAL',
   loading: 'LOADING',
@@ -59,7 +61,11 @@ class MyProfile extends Component {
     const {userProfileDetailsFetchStatus, userProfileData} = this.state
     switch (userProfileDetailsFetchStatus) {
       case dataFetchStatusConstants.loading:
-        return <LoaderComponent />
+        return (
+          <div className="loader-component-container-profile">
+            <LoaderComponent />
+          </div>
+        )
       case dataFetchStatusConstants.success:
         return (
           <>
@@ -68,7 +74,7 @@ class MyProfile extends Component {
         )
       case dataFetchStatusConstants.failure:
         return (
-          <div>
+          <div className="search-component-failure">
             <SomethingWentWrong retryFunction={this.getUserProfileData} />
           </div>
         )
@@ -80,7 +86,7 @@ class MyProfile extends Component {
   render() {
     return (
       <div>
-        <Header className="for-header-test" />
+        <Header />
 
         <SearchComponentContext.Consumer>
           {value => {
@@ -107,3 +113,5 @@ class MyProfile extends Component {
 }
 
 export default MyProfile
+
+//  *********** */

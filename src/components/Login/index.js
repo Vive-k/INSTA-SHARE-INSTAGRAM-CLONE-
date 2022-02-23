@@ -1,8 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
-
-// const Login = () => <h1>Login Route</h1>
+import './index.css'
 
 class Login extends Component {
   state = {usernameInput: '', passwordInput: '', errorMessageOnSubmission: ''}
@@ -42,23 +41,27 @@ class Login extends Component {
         <div className="large-display-image-login-form-container">
           <div className="login-image-container">
             <img
+              className="login-page-image"
               src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645148033/Layer_2_hhrvzj.png"
               alt="website login"
             />
           </div>
-          <form
-            className="login-form"
-            onSubmit={this.loginCredentialSubmission}
-          >
-            <div>
-              <img
-                src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645148617/Standard_Collection_8-website_logo_tid9hk.png"
-                alt="website logo"
-              />
-            </div>
-            <h1>Insta Share</h1>
-            <label htmlFor="username">USERNAME</label>
-            <div>
+          <div className="login-form-container">
+            <form
+              className="login-form"
+              onSubmit={this.loginCredentialSubmission}
+            >
+              <div>
+                <img
+                  src="https://res.cloudinary.com/duqlsmi22/image/upload/v1645148617/Standard_Collection_8-website_logo_tid9hk.png"
+                  alt="website logo"
+                />
+              </div>
+              <h1 className="form-logo-title">Insta Share</h1>
+              <label htmlFor="username" className="login-form-label">
+                USERNAME
+              </label>
+              {/* } <div> { */}
               <input
                 id="username"
                 type="text"
@@ -66,10 +69,11 @@ class Login extends Component {
                 onChange={this.takingUsername}
                 /* value={usernameInput} */
               />
-            </div>
-
-            <label htmlFor="password">PASSWORD</label>
-            <div>
+              <br />
+              {/* }   </div> { */}
+              <label htmlFor="password" className="login-form-label">
+                PASSWORD
+              </label>
               <input
                 id="password"
                 type="password"
@@ -78,11 +82,13 @@ class Login extends Component {
                 /* value={passwordInput} */
               />
               <p className="login-error-message">{errorMessageOnSubmission}</p>
-            </div>
-            <div>
-              <button type="submit">Login</button>
-            </div>
-          </form>
+              <br />
+
+              <button className="login-button" type="submit">
+                Login
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     )
@@ -90,3 +96,5 @@ class Login extends Component {
 }
 
 export default Login
+
+// ************ */

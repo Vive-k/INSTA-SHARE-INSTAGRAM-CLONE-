@@ -2,6 +2,8 @@ import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
 import {withRouter} from 'react-router-dom'
 
+import './index.css'
+
 const ProfileComponent = props => {
   const {userProfileData} = props
 
@@ -12,62 +14,80 @@ const ProfileComponent = props => {
   const altValuePost = match.path === '/my-profile' ? 'my post' : 'user post'
 
   return (
-    <div>
-      <h1>{userProfileData.user_name}</h1>
-
-      <div>
+    <div className="profile-page">
+      <div className="profile-container">
         <div>
-          <img src={userProfileData.profile_pic} alt={altValueProfilePic} />
+          <img
+            className="profile-image"
+            src={userProfileData.profile_pic}
+            alt={altValueProfilePic}
+          />
         </div>
+
         <div>
-          <div>
-            <div>
-              <p>{userProfileData.posts_count}</p>
-              <p>posts</p>
+          <h1 className="profile-name">{userProfileData.user_name}</h1>
+          <div className="profile-activity-data">
+            <div className="profile-activities">
+              <p className="profile-activities-title">posts</p>
+              <p className="profile-activities-count">
+                {userProfileData.posts_count}
+              </p>
             </div>
 
-            <div>
-              <p>{userProfileData.followers_count}</p>
-              <p>followers</p>
+            <div className="profile-activities">
+              <p className="profile-activities-title">followers</p>
+              <p className="profile-activities-count">
+                {userProfileData.followers_count}
+              </p>
             </div>
 
-            <div>
-              <p>{userProfileData.following_count}</p>
-              <p>following</p>
+            <div className="profile-activities">
+              <p className="profile-activities-title">following</p>
+              <p className="profile-activities-count">
+                {userProfileData.following_count}
+              </p>
             </div>
           </div>
 
-          <p>{userProfileData.user_id}</p>
-          <p>{userProfileData.user_bio}</p>
+          <p className="user-id-profile">{userProfileData.user_id}</p>
+          <p className="user-bio-profile">{userProfileData.user_bio}</p>
         </div>
 
-        {/*    <p>{userProfileData.user_id}</p>
-          <p>{userProfileData.user_bio}</p>  */}
+        {/* <p className="for-small-display">{userProfileData.user_id}</p>
+          <p className="for-small-display">{userProfileData.user_bio}</p> */}
       </div>
 
-      <ul>
+      <ul className="profile-stories-container">
         {userProfileData.stories.map(each => (
           <li key={each.id}>
-            <img src={each.image} alt={altValueStory} />
+            <img
+              className="profile-story-image"
+              src={each.image}
+              alt={altValueStory}
+            />
           </li>
         ))}
       </ul>
 
-      <hr />
-      <div>
+      <hr className="horizantal-rule" />
+      <div className="profile-post-title-container">
         <BsGrid3X3 />
-        <h1>Posts</h1>
+        <h1 className="post-text">Posts</h1>
       </div>
       {userProfileData.posts.length === 0 ? (
-        <div>
-          <BiCamera style={{color: '#000000'}} />
-          <h1>No Posts Yet</h1>
+        <div className="no-posts-profile-container">
+          <BiCamera className="camera-icon" />
+          <h1 className="no-posts-text">No Posts Yet</h1>
         </div>
       ) : (
-        <ul>
+        <ul className="profile-posts-container">
           {userProfileData.posts.map(each => (
             <li key={each.id}>
-              <img src={each.image} alt={altValuePost} />
+              <img
+                className="post-image-profile"
+                src={each.image}
+                alt={altValuePost}
+              />
             </li>
           ))}
         </ul>
@@ -77,3 +97,5 @@ const ProfileComponent = props => {
 }
 
 export default withRouter(ProfileComponent)
+
+//  ************** */

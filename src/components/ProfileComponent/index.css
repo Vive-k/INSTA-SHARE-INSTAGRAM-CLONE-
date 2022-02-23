@@ -1,5 +1,146 @@
+.profile-page {
+  background-color: #fafafa;
+  margin-top: 0;
+  padding-top: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 90px;
+  margin-right: 40px;
+}
+
+.profile-activity-data {
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.profile-activities {
+  display: flex;
+  margin-right: 20px;
+  margin-bottom: 0;
+}
 .for-large-display {
   display: none;
+}
+
+.profile-activities-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.profile-activities-count {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.profile-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+.user-id-profile {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.user-bio-profile {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.profile-stories-container {
+  display: flex;
+  padding-left: 0;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+
+.profile-story-image {
+  height: 80px;
+  width: 80px;
+  padding: 3px;
+  border: 1px solid #dbdbdb;
+  border-radius: 40px;
+  margin-right: 20px;
+}
+
+.profile-post-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.post-text {
+  margin-left: 10px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.no-posts-profile-container {
+  height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-icon {
+  font-size: 60px;
+  padding: 10px;
+  border: 2px solid #262626;
+  border-radius: 30px;
+}
+
+.no-posts-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+}
+
+.profile-posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.post-image-profile {
+  margin-right: 10px;
+  width: 25vw;
+  min-width: 80px;
+}
+
+.horizantal-rule {
+  border: 0.25px solid #dbdbdb;
+  background-color: #dbdbdb;
 }
 @media screen and (min-width: 768px) {
   .for-small-display {

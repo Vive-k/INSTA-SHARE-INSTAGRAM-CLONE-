@@ -99,7 +99,7 @@ class App extends Component {
     } = this.state
 
     return (
-      <>
+      <div className="app-page">
         <SearchComponentContext.Provider
           value={{
             showSearchComponent,
@@ -127,9 +127,11 @@ class App extends Component {
             <Redirect to="/not-found" />
           </Switch>
         </SearchComponentContext.Provider>
-      </>
+      </div>
     )
   }
 }
 
 export default App
+
+// **************** */

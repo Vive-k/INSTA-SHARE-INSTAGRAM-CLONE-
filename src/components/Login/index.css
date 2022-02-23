@@ -1,0 +1,109 @@
+.login-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.large-display-image-login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.login-image-container {
+  width: 100%;
+  text-align: center;
+}
+
+.login-page-image {
+  width: 80%;
+}
+
+.login-form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  width: 80%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+  background: #fefeff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.form-logo-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.login-form-label {
+  align-self: flex-start;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.login-form-input-field {
+  height: 30px;
+  background: #eeeeee;
+  border-radius: 2px;
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+.login-error-message {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ef4444;
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+.login-button {
+  background: #4094ef;
+  border-radius: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 24px;
+  width: 100%;
+  border: none;
+  color: #ffffff;
+  height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .login-image-container {
+    display: none;
+  }
+
+  .login-form-container {
+    width: 100%;
+  }
+
+  .login-form {
+    box-shadow: none;
+    width: 100%;
+  }
+}

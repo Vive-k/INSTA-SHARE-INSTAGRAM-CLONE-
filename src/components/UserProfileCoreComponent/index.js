@@ -58,7 +58,11 @@ class UserProfileCoreComponent extends Component {
     const {userProfileDetailsFetchStatus, userProfileData} = this.state
     switch (userProfileDetailsFetchStatus) {
       case dataFetchStatusConstants.loading:
-        return <LoaderComponent />
+        return (
+          <div className="loader-component-container-profile">
+            <LoaderComponent />
+          </div>
+        )
       case dataFetchStatusConstants.success:
         return (
           <>
@@ -67,7 +71,7 @@ class UserProfileCoreComponent extends Component {
         )
       case dataFetchStatusConstants.failure:
         return (
-          <div>
+          <div className="search-component-failure">
             <SomethingWentWrong retryFunction={this.getUserProfileData} />
           </div>
         )
@@ -82,3 +86,5 @@ class UserProfileCoreComponent extends Component {
 }
 
 export default withRouter(UserProfileCoreComponent)
+
+// ********* */

@@ -2,3 +2,36 @@
 .slick-next:before {
   color: black;
 }
+
+.each-story {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.each-story-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.each-story-image {
+  width: 100%;
+  border-radius: 50%;
+}
+
+/* style={{
+        display: 'flex',
+        flexDirection: 'Column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }} */
+
+/*  style={{
+          width: '92%',
+        }} */

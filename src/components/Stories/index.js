@@ -10,28 +10,17 @@ const Stories = props => {
     slidesToScroll: 1,
   }
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'Column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Slider
-        {...settings}
-        slidesToShow={noOfSlidesToShow}
-        style={{
-          width: '92%',
-        }}
-      >
+    <div>
+      <Slider {...settings} slidesToShow={noOfSlidesToShow}>
         {userStories.map(each => (
           <div key={each.user_id}>
-            <div>
-              <div>
-                <img src={each.story_url} alt="user story" />
-                <p>{each.user_name}</p>
-              </div>
+            <div className="each-story">
+              <img
+                className="each-story-image"
+                src={each.story_url}
+                alt="user story"
+              />
+              <p>{each.user_name}</p>
             </div>
           </div>
         ))}
@@ -41,3 +30,5 @@ const Stories = props => {
 }
 
 export default Stories
+
+// *** */
