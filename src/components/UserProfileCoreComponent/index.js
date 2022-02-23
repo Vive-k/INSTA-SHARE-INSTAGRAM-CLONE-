@@ -23,6 +23,12 @@ class UserProfileCoreComponent extends Component {
 
   componentDidMount() {
     this.getUserProfileData()
+    const {history} = this.props
+    history.listen(() => {
+      if (history.action === 'POP') {
+        history.push('/')
+      }
+    })
   }
 
   getUserProfileData = async () => {
