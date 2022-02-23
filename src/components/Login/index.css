@@ -106,4 +106,7 @@
     box-shadow: none;
     width: 100%;
   }
+  .login-form {
+    background-color: #fafafa;
+  }
 }
