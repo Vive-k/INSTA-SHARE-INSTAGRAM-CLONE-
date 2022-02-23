@@ -28,22 +28,22 @@ const ProfileComponent = props => {
           <h1 className="profile-name">{userProfileData.user_name}</h1>
           <div className="profile-activity-data">
             <div className="profile-activities">
-              <p className="profile-activities-title">posts</p>
               <p className="profile-activities-count">
+                <span className="profile-activities-title">posts</span>{' '}
                 {userProfileData.posts_count}
               </p>
             </div>
 
             <div className="profile-activities">
-              <p className="profile-activities-title">followers</p>
               <p className="profile-activities-count">
+                <span className="profile-activities-title">followers</span>{' '}
                 {userProfileData.followers_count}
               </p>
             </div>
 
             <div className="profile-activities">
-              <p className="profile-activities-title">following</p>
               <p className="profile-activities-count">
+                <span className="profile-activities-title">following</span>{' '}
                 {userProfileData.following_count}
               </p>
             </div>
