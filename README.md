@@ -168,6 +168,10 @@ Finally, Users are able to view this website responsively in mobile view, tablet
 ```
   
   
+
+  
+  
+  
   ** Third Party Package **
       - third party package used in designing this application is **React Slick**
   
