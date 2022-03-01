@@ -64,7 +64,7 @@ Here in this project It have routing pages which are at the paths and are with t
   - When an _authenticated_ user opens the My Profile Route
          At the **path** in url : "/my-profile"
   
-  - An HTTP GET request is made to the **My Profile API URL** : https://apis.ccbp.in/insta-share/my-profile (with `jwt_token` in the Cookies)
+  - An HTTP GET request is made to the **My Profile API URL** : https://apis.ccbp.in/insta-share/my-profile 
      
      - **_Loader_** will be displayed while fetching the data
       - After the data is fetched successfully, the response received is displayed 
