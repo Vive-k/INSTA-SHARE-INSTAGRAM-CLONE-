@@ -175,5 +175,5 @@ Finally, Users are able to view this website responsively in mobile view, tablet
   **React Icons Used **
    **BsHeart**, **FaRegComment**, **BiShareAlt**  at Users Posts as like, comment and share clickable objects  
   **BsGrid3X3** at posts head in my profile and user profile
-  **BiCamera** for no at my profile and user profile
+  **BiCamera** for no posts view at my profile and user profile
   
