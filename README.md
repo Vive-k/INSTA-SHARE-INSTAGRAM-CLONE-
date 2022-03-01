@@ -14,7 +14,7 @@ Here in this project It have routing pages which are at the paths and are with t
   - When an _authenticated_ user tries to access the Home Route, Profile Route, and User Profile Route, then the page will be navigated to the respective route
   - When an _authenticated_ user tries to access the Login Route, then the page will be navigated to the Home Route
 
-        Here in this Web Page the login Action is a API POST Method, So Access to Login is based on the response from the API POST method
+        -Here in this Web Page the login Action is a API POST Method, So Access to Login is based on the response from the API POST method
         which is using the api url and path :  https://apis.ccbp.in/login 
         
      When an _authenticated_user gets the Access to the application then Rendered page at each Route have Header which performs some key functions at some Actions with the objects in Header which is described Under **Header** Section
