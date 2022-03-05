@@ -118,7 +118,7 @@ class Home extends Component {
       case dataFetchStatusConstants.success:
         return (
           <div className="search-component-with-success-results">
-            <ul className="user-posts-container">
+            <ul className="user-posts-container-home">
               {usersPosts.map(eachPost => (
                 <UsersPosts key={eachPost.post_id} userPost={eachPost} />
               ))}

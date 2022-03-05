@@ -15,47 +15,65 @@ const ProfileComponent = props => {
 
   return (
     <div className="profile-page">
+      <h1 className="profile-name for-small-display">
+        {userProfileData.user_name}
+      </h1>
       <div className="profile-container">
-        <div>
-          <img
-            className="profile-image"
-            src={userProfileData.profile_pic}
-            alt={altValueProfilePic}
-          />
-        </div>
+        <img
+          className="profile-image"
+          src={userProfileData.profile_pic}
+          alt={altValueProfilePic}
+        />
 
-        <div>
-          <h1 className="profile-name">{userProfileData.user_name}</h1>
+        <div className="profile-details-data-container">
+          <h1 className="profile-name for-large-display">
+            {userProfileData.user_name}
+          </h1>
           <div className="profile-activity-data">
             <div className="profile-activities">
+              <div className="profile-activities-count">
+                <p className="profile-activities-number">
+                  {' '}
+                  {userProfileData.posts_count}
+                </p>
+                <p className="profile-activities-title">posts </p>
+              </div>
+            </div>
+
+            <div className="profile-activities">
               <p className="profile-activities-count">
-                <span className="profile-activities-title">posts</span>{' '}
-                {userProfileData.posts_count}
+                <p className="profile-activities-number">
+                  {userProfileData.followers_count}
+                </p>
+                <p className="profile-activities-title">followers </p>{' '}
               </p>
             </div>
 
             <div className="profile-activities">
               <p className="profile-activities-count">
-                <span className="profile-activities-title">followers</span>{' '}
-                {userProfileData.followers_count}
-              </p>
-            </div>
-
-            <div className="profile-activities">
-              <p className="profile-activities-count">
-                <span className="profile-activities-title">following</span>{' '}
-                {userProfileData.following_count}
+                <p className="profile-activities-number">
+                  {' '}
+                  {userProfileData.following_count}
+                </p>
+                <p className="profile-activities-title">following </p>{' '}
               </p>
             </div>
           </div>
 
-          <p className="user-id-profile">{userProfileData.user_id}</p>
-          <p className="user-bio-profile">{userProfileData.user_bio}</p>
+          <p className="user-id-profile for-large-display">
+            {userProfileData.user_id}
+          </p>
+          <p className="user-bio-profile for-large-display">
+            {userProfileData.user_bio}
+          </p>
         </div>
-
-        {/* <p className="for-small-display">{userProfileData.user_id}</p>
-          <p className="for-small-display">{userProfileData.user_bio}</p> */}
       </div>
+      <p className="user-id-profile for-small-display">
+        {userProfileData.user_id}
+      </p>
+      <p className="user-bio-profile for-small-display">
+        {userProfileData.user_bio}
+      </p>
 
       <ul className="profile-stories-container">
         {userProfileData.stories.map(each => (

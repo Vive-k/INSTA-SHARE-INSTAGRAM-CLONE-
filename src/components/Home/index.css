@@ -43,9 +43,25 @@
   padding-top: 20px;
 }
 
+.user-posts-container-home {
+  padding-left: 0;
+  list-style-type: none;
+  width: 100%;
+  background-color: #fafafa;
+}
+
 @media screen and (min-width: 768px) {
   .header-large-device {
     display: block;
+  }
+
+  .user-posts-container-home {
+    background-color: #fafafa;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .header-small-device {

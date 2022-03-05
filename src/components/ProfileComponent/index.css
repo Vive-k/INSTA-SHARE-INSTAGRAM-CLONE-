@@ -10,7 +10,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .profile-image {
@@ -18,6 +18,11 @@
   height: 180px;
   border-radius: 90px;
   margin-right: 40px;
+}
+
+.profile-details-data-container {
+  min-width: 350px;
+  width: 60%;
 }
 
 .profile-activity-data {
@@ -30,6 +35,8 @@
   display: flex;
   margin-right: 20px;
   margin-bottom: 0;
+  align-items: center;
+  justify-content: center;
 }
 .for-large-display {
   display: none;
@@ -39,14 +46,26 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: bolder;
+  margin-right: 10px;
   font-size: 16px;
+  margin: 0;
 }
 
+.profile-activities-number {
+  margin: 0;
+  padding-top: 2px;
+  margin-right: 5px;
+}
 .profile-activities-count {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-name {
@@ -60,7 +79,7 @@
 .user-id-profile {
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 16px;
   margin-top: 0;
 }
@@ -148,5 +167,22 @@
   }
   .for-large-display {
     display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-activities-count {
+    flex-direction: column;
+  }
+  .profile-details-data-container {
+    min-width: 0;
+    width: 50%;
+  }
+
+  .profile-activities-number {
+    font-size: 20px;
+  }
+  .user-id-profile {
+    margin-top: 10px;
   }
 }
