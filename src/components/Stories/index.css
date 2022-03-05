@@ -20,6 +20,12 @@
   font-size: 14px;
 }
 
+@media screen and (max-width: 376px) {
+  .each-story-name {
+    font-size: 11px;
+  }
+}
+
 .each-story-image {
   width: 100%;
   border-radius: 50%;

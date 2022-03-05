@@ -20,7 +20,7 @@ const Stories = props => {
                 src={each.story_url}
                 alt="user story"
               />
-              <p>{each.user_name}</p>
+              <p className="each-story-name">{each.user_name}</p>
             </div>
           </div>
         ))}
