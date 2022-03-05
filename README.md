@@ -1,6 +1,7 @@
-                                                  Insta Share App 
-                                            https://vivekpinstashar.ccbp.tech/
-                                               
+  Insta Share App 
+  https://vivekpinstashar.ccbp.tech/                                                
+
+
 This Project is a Application which show up the Users Posts Where one can like the post or dislike the post which is like instagram clone like application
 
 Here in this project It have routing pages which are at the paths and are with the functionalities and features described as follows:
